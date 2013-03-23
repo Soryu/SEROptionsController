@@ -9,6 +9,7 @@
 #import "SEROptionsControllerDemoViewController.h"
 #import "SEROptionsController.h"
 #import "SERDomainObject.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SEROptionsControllerDemoViewController ()
 
@@ -107,6 +108,9 @@
   self.optionsController.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
   self.optionsController.tableView.backgroundColor = [UIColor clearColor];
   self.optionsController.tableView.scrollEnabled   = NO;
+  self.optionsController.tableView.layer.cornerRadius = 5.0;
+  self.optionsController.tableView.frame = CGRectMake(0.0, -5.0, self.view.bounds.size.width, 44.0 * [self.optionsController.values count] + 5.0);
+  self.optionsController.tableView.contentInset = UIEdgeInsetsMake(5.0, 0.0, 0.0, 0.0);
   
   // present the thing
   [self.optionsController presentInView:self.view selectionChanged:^(SERDomainObject *object, BOOL on) {

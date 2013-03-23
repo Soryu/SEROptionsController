@@ -38,7 +38,9 @@ static const NSTimeInterval kAnimationDuration = 0.25;
   [super viewWillAppear:animated];
   
   self.capturingView.frame = self.view.bounds;
-  self.tableView.frame = self.view.bounds;
+  
+  if (self.tableView.frame.size.height == 0.0)
+    self.tableView.frame = self.view.bounds;
 }
 
 - (void)setValues:(NSArray *)values
