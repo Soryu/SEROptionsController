@@ -7,6 +7,7 @@
 
 #import "SEROptionsController.h"
 #import <objc/runtime.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface SEROptionsController () <UITableViewDataSource>
 
@@ -64,8 +65,11 @@ static const NSTimeInterval kAnimationDuration = 0.25;
   self.view.alpha = 0.0;
   [view addSubview:self.view];
   
+  self.tableView.transform = CGAffineTransformMakeTranslation(0.0, -self.tableView.frame.size.height);
+  
   [UIView animateWithDuration:kAnimationDuration animations:^{
     self.view.alpha = 1.0;
+    self.tableView.transform = CGAffineTransformIdentity;
   }];
 }
 
@@ -73,10 +77,12 @@ static const NSTimeInterval kAnimationDuration = 0.25;
 {
   [UIView animateWithDuration:kAnimationDuration
     animations:^{
+      self.tableView.transform = CGAffineTransformMakeTranslation(0.0, -self.tableView.frame.size.height);
       self.view.alpha = 0.0;
     }
     completion:^(BOOL finished) {
       [self.view removeFromSuperview];
+      self.tableView.transform = CGAffineTransformIdentity;
     }
   ];
 }
