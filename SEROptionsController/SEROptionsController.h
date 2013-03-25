@@ -9,6 +9,7 @@ typedef NSString *(^SEROptionsStringTransformationBlock)(id);
 typedef UIImage *(^SEROptionsImageTransformationBlock)(id);
 typedef void (^SEROptionsChangedBlock)(id value, BOOL on);
 typedef void (^SEROptionsCellConfigurationBlock)(UITableViewCell *cell, NSIndexPath *indexPath);
+typedef void (^SEROptionsAfterDismissalBlock)();
 
 @interface SEROptionsController : UIViewController
 
@@ -42,7 +43,7 @@ typedef void (^SEROptionsCellConfigurationBlock)(UITableViewCell *cell, NSIndexP
 /**
  * Methods to show and hide (animated) the component
  */
-- (void)presentInView:(UIView *)view selectionChanged:(SEROptionsChangedBlock)changedBlock;
+- (void)presentInView:(UIView *)view selectionChanged:(SEROptionsChangedBlock)changedBlock afterDismissal:(SEROptionsAfterDismissalBlock)afterDismissalBlock;
 - (void)dismiss;
 
 

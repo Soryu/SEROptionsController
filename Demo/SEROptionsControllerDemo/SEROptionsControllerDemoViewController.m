@@ -61,7 +61,6 @@
   if (self.optionsController)
   {
     [self.optionsController dismiss];
-    self.optionsController = nil;
     return;
   }
   
@@ -113,10 +112,15 @@
   self.optionsController.tableView.contentInset = UIEdgeInsetsMake(5.0, 0.0, 0.0, 0.0);
   
   // present the thing
-  [self.optionsController presentInView:self.view selectionChanged:^(SERDomainObject *object, BOOL on) {
+  [self.optionsController presentInView:self.view
+    selectionChanged:^(SERDomainObject *object, BOOL on) {
     // ... do something as a result of the value being changed
-    self.resultLabel.text = [NSString stringWithFormat:@"%@ toggled %@", object, on ? @"on" : @"off"];
-  }];
+      self.resultLabel.text = [NSString stringWithFormat:@"%@ toggled %@", object, on ? @"on" : @"off"];
+    }
+    afterDismissal:^{
+      self.optionsController = nil;
+    }
+  ];
 }
 
 @end
